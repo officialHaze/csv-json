@@ -23,7 +23,7 @@ def csv_to_dict(data_set):
 
 def write_json_file(dict_list, file_name):
     i = 0
-    json_file = open(file_name, 'w')
+    json_file = open(f'{file_name}.json', 'w')
     json_file.write('[')
     for dict in dict_list:
         print(dict)
@@ -37,10 +37,16 @@ def write_json_file(dict_list, file_name):
     json_file.close()
 
 
-def csv_to_json(csv_file):
+def csv_to_json(csv_file, json_file_name):
     data_set = read_csv(csv_file)
     dict_list = csv_to_dict(data_set)
-    write_json_file(dict_list[1:], 'countries.json')
+    write_json_file(dict_list[1:], file_name=json_file_name)
 
 
-csv_to_json('country_codes.csv')
+def main():
+    csv_file_path = input('Enter the full CSV file name or the full path to the CSV file: ')
+    json_file_name = input('Enter the name of the json file you want to save, DO NOT enter any extension: ')
+    csv_to_json(csv_file=csv_file_path, json_file_name=json_file_name)
+
+
+main()
